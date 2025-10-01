@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clazzy - Dashboard</title>
+  <link rel="stylesheet" href="../2-CSS/4-dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="menu-icon" onclick="toggleSidebar()">☰</div>
+  <div class="nav-center">Clazzy</div> 
+<div class="page-title" id="pageTitle">Dashboard</div>
+</nav>
+
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="menu-icon2" onclick="toggleSidebar()">☰</div>
+    <div class="profile">
+        <img src="../4-assets/images/logoDark.png" alt="profile">
+      <div class="client-name">ahmed ali</div>
+    </div>
+    <nav>
+      <a href="3-home.html">Homepage</a>
+      <a href="6-4-profile.html">profile</a>
+      <a href="7-4-edit-product.html">Products</a>
+      <a href="settings.html">Settings</a>
+      <a href="help.html">Help</a>
+       <a href="#">log out</a>
+    </nav>
+  </aside>
+
+  <!-- Main Dashboard -->
+  <div class="dashboard-container">
+
+    <!-- زوار الشهر -->
+    <div class="card visitors">
+      <h3>Monthly Visitors</h3>
+      <canvas id="visitorsChart"></canvas>
+    </div>
+
+    <!-- 4 مربعات فوق -->
+    <div class="stats-grid">
+      <div class="stat-card">Sales<br><span>$12,500</span></div>
+      <div class="stat-card">Returns<br><span>$1,200</span></div>
+      <div class="stat-card">Items<br><span>235</span></div>
+      <div class="stat-card">Delivered<br><span>189</span></div>
+    </div>
+
+    <!-- 2 مربعات تحت -->
+    <div class="stats-grid">
+      <div class="stat-card">Pending<br><span>14</span></div>
+      <div class="stat-card">Unanswered<br><span>7</span></div>
+    </div>
+
+    <!-- نصائح -->
+    <div class="card tips">
+      <h3>Tips & Announcements</h3>
+      <p>✨ Keep your product images clear and high quality to increase sales.</p>
+      <p>📦 Try offering free shipping for orders above 500 EGP.</p>
+    </div>
+
+    <!-- رفع صور -->
+    <div class="card upload">
+      <button onclick="window.location.href='7-4-edit-product.html'" class="btn">Upload Product</button>
+    </div>
+
+    <!-- الرسائل -->
+    <div class="card messages">
+      <h3>Messages</h3>
+      <button onclick="window.location.href='5-4-chat.html'" class="btn">Open Chat</button>
+    </div>
+
+  </div>
+
+  <!-- Chart Script -->
+  <script>
+    const ctx = document.getElementById('visitorsChart').getContext('2d');
+    const visitorsChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+        datasets: [{
+          label: 'Visitors',
+          data: [300, 450, 400, 600],
+          borderColor: '#FCA311',
+          backgroundColor: 'rgba(252, 163, 17, 0.2)',
+          fill: true,
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { ticks: { color: '#fff' }, grid: { color: 'rgba(255,255,255,0.1)' } },
+          y: { ticks: { color: '#fff' }, grid: { color: 'rgba(255,255,255,0.1)' } }
+        }
+      }
+    });
+    
+function toggleSidebar() {
+  document.getElementById("sidebar").classList.toggle("active");
+}
+
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Clazzy - Products</title>
+  
+  <link rel="stylesheet" href="../2-CSS/7-4-edit-product.css">
+</head>
+<body>
+
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div  id="hamburger" class="menu-icon" onclick="toggleSidebar()">☰ Clazzy</div>
+  <div class="nav-center">Products</div>
+  <div class="nav-right"></div>
+</nav>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div  id="closeSidebar"class="menu-icon2" onclick="toggleSidebar()">☰</div>
+    <div class="profile">
+        <img src="../4-assets/images/logoDark.png" alt="profile">
+      <div class="client-name">ahmed ali</div>
+    </div>
+    <nav>
+      <a href="3-home.html">Homepage</a>
+      <a href="6-4-profile.html">profile</a>
+      <a href="7-4-edit-product.html">Products</a>
+      <a href="settings.html">Settings</a>
+      <a href="help.html">Help</a>
+       <a href="#">log out</a>
+    </nav>
+  </aside>
+
+  <!-- Main Page wrapper -->
+  <div class="page">
+    <div class="content">
+      <!-- Masonry grid -->
+      <div class="masonry" id="masonry">
+        <!-- example product cards (you can load dynamically) -->
+        <div class="product-card" data-id="1" data-name="T-Shirt" data-price="120" data-img="https://via.placeholder.com/400x550?text=T-Shirt">
+          <div class="product-thumb" style="background-image:url('../4-assets/images/images.jpeg')"></div>
+          <div class="product-info">
+            <div>
+              <div class="product-title">T-Shirt</div>
+              <div class="product-price">EGP 120</div>
+            </div>
+            <div class="product-actions">
+              <button class="edit-btn" data-action="edit">Edit</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-id="2" data-name="Cap" data-price="40" data-img="https://via.placeholder.com/400x600?text=Cap">
+          <div class="product-thumb" style="background-image:url('../4-assets/images/Untitleddesign_27.webp')"></div>
+          <div class="product-info">
+            <div>
+              <div class="product-title">Cap</div>
+              <div class="product-price">EGP 40</div>
+            </div>
+            <div class="product-actions">
+              <button class="edit-btn" data-action="edit">Edit</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-id="3" data-name="Sneakers" data-price="350" data-img="https://via.placeholder.com/400x500?text=Sneakers">
+          <div class="product-thumb" style="background-image:url('../4-assets/images/images1.jpeg')"></div>
+          <div class="product-info">
+            <div>
+              <div class="product-title">Sneakers</div>
+              <div class="product-price">EGP 350</div>
+            </div>
+            <div class="product-actions">
+              <button class="edit-btn" data-action="edit">Edit</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-id="4" data-name="Bag" data-price="220" data-img="https://via.placeholder.com/400x650?text=Bag">
+          <div class="product-thumb" style="background-image:url('../4-assets/images/logoDark.png')"></div>
+          <div class="product-info">
+            <div>
+              <div class="product-title">Bag</div>
+              <div class="product-price">EGP 220</div>
+            </div>
+            <div class="product-actions">
+              <button class="edit-btn" data-action="edit">Edit</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Product button (square) -->
+  <button class="add-btn" id="addBtn" title="Add product">+</button>
+
+  <!-- Add Product Modal -->
+  <div class="overlay" id="addOverlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="addTitle">
+      <h3 id="addTitle">Add Product</h3>
+
+      <form id="addForm" class="form">
+        <div class="form-row column">
+          <div>
+            <label>Product Image</label>
+            <div id="addImgPreview" class="img-preview">No image</div>
+            <input type="file" id="addImg" accept="image/*" />
+            <div id="addImgError" class="error">Please upload an image.</div>
+          </div>
+
+          <div>
+            <label for="addName">Product Name</label>
+            <input type="text" id="addName" placeholder="Enter product name" />
+            <div id="addNameError" class="error">Name is required.</div>
+          </div>
+
+          <div class="form-row">
+            <div class="half">
+              <label for="addPrice">Price</label>
+              <input type="number" id="addPrice" placeholder="0" />
+              <div id="addPriceError" class="error">Price must be > 0.</div>
+            </div>
+            <div class="half">
+              <label for="addDiscount">Discount (optional)</label>
+              <input type="number" id="addDiscount" placeholder="0" />
+            </div>
+          </div>
+
+          <div>
+            <label for="addDesc">Description</label>
+            <textarea id="addDesc" placeholder="Short description (optional)"></textarea>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn cancel" id="addCancel">Cancel</button>
+          <button type="submit" class="btn publish">Publish</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Product Modal -->
+  <div class="overlay" id="editOverlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="editTitle">
+      <h3 id="editTitle">Edit Product</h3>
+
+      <form id="editForm" class="form">
+        <input type="hidden" id="editId" />
+
+        <div class="form-row column">
+          <div>
+            <label>Product Image</label>
+            <div id="editImgPreview" class="img-preview">No image</div>
+            <input type="file" id="editImg" accept="image/*" />
+            <div id="editImgError" class="error">Please upload an image.</div>
+          </div>
+
+          <div>
+            <label for="editName">Product Name</label>
+            <input type="text" id="editName" placeholder="Enter product name" />
+            <div id="editNameError" class="error">Name is required.</div>
+          </div>
+
+          <div class="form-row">
+            <div class="half">
+              <label for="editPrice">Price</label>
+              <input type="number" id="editPrice" placeholder="0" />
+              <div id="editPriceError" class="error">Price must be > 0.</div>
+            </div>
+            <div class="half">
+              <label for="editDiscount">Discount (optional)</label>
+              <input type="number" id="editDiscount" placeholder="0" />
+            </div>
+          </div>
+
+          <div>
+            <label for="editDesc">Description</label>
+            <textarea id="editDesc" placeholder="Short description (optional)"></textarea>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn cancel" id="editCancel">Cancel</button>
+          <button type="submit" class="btn publish">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">Saved</div>
+
+  <script src="../3-java/7-4-edit-product.js"></script>
+</body>
+</html>

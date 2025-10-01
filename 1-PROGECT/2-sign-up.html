@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clazzy - Sign Up</title>
+  <link rel="stylesheet" href="../2-CSS/2-sign-up.css">
+</head>
+<body>
+
+  <div class="logo-bg">
+    <img src="../4-assets/images/logo.png" alt="Logo">
+  </div>
+
+  <!-- الفورم -->
+  <div class="signup-box">
+    <h2>Create Your Account</h2>
+    <form id="signupForm" onsubmit="return validateForm()">
+      
+      <div class="input-group">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" placeholder="Enter your First name">
+      </div>
+      
+      <div class="input-group">
+        <label for="secondName">Second Name</label>
+        <input type="text" id="secondName" placeholder="Enter your Second Name">
+      </div>
+
+      <div class="input-group">
+        <label for="login">Email or Phone</label>
+        <input type="text" id="login" placeholder="Enter your email or phone">
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password">
+      </div>
+
+      <div class="input-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="Confirm your password">
+      </div>
+
+      <div class="input-group">
+        <label for="role">I am a:</label>
+        <select id="role">
+          <option value="">-- Select --</option>
+          <option value="buyer">Buyer</option>
+          <option value="seller">Seller</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn">Sign Up</button>
+      <p class="login-text">Already have an account? <a href="1-login.html">Login</a></p>
+    </form>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    function validateForm() {
+      let firstName = document.getElementById("firstName").value.trim();
+      let secondName = document.getElementById("secondName").value.trim();
+      let login = document.getElementById("login").value.trim();
+      let password = document.getElementById("password").value;
+      let confirmPassword = document.getElementById("confirmPassword").value;
+      let role = document.getElementById("role").value;
+
+      if (!firstName || !secondName || !login || !password || !confirmPassword || !role) {
+        alert("من فضلك املأ جميع البيانات");
+        return false;
+      }
+
+      if (password.length < 8) {
+        alert("كلمة المرور لازم تكون 8 أحرف أو أكتر");
+        return false;
+      }
+
+      if (password !== confirmPassword) {
+        alert("كلمة المرور وتأكيدها غير متطابقين");
+        return false;
+      }
+
+      return true; // يسمح بالإرسال
+    }
+  </script>
+
+</body>
+</html>

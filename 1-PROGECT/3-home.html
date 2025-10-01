@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clazzy - Home</title>
+  <link rel="stylesheet" href="../2-CSS/3-home.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <button class="hamburger" id="hamburger">☰</button>
+      <span class="brand">Clazzy</span>
+      
+    </div>
+    <div class="page-title">Home Page</div>
+    <div class="nav-right">
+      <a href="#">Info</a>
+    </div>
+  </nav>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <button class="hamburger" id="hamburgerr">☰</button>
+    <div class="profile">
+        <img src="../4-assets/images/logoDark.png" alt="profile">
+      <div class="client-name">ahmed ali</div>
+    </div>
+    <nav>
+      <a href="4-dashboard.html">Dashboard</a>
+      <a href="6-4-profile.html">profile</a>
+      <a href="7-4-edit-product.html">Products</a>
+      <a href="settings.html">Settings</a>
+      <a href="help.html">Help</a>
+       <a href="#">log out</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="content">
+    <section class="grid">
+      <div class="card" style="background-image:url('../4-assets/images/logoDark.png')"></div>
+      <div class="card" style="background-image:url('../4-assets/images/logoDark.png')"></div>
+      <div class="card" style="background-image:url('../4-assets/images/logoDark.png')"></div>
+      <div class="card" style="background-image:url('../4-assets/images/logoDark.png')"></div>
+      <div class="card" style="background-image:url('../4-assets/images/logoDark.png')"></div>
+    </section>
+  </main>
+
+  <!-- Chat AI -->
+  <div class="chat-button" id="chatBtn">AI</div>
+  <div class="chat-box" id="chatBox">
+    <div class="chat-header">
+      <span>Chat</span>
+      <button id="closeChat">×</button>
+    </div>
+    <div class="chat-body">
+      <div class="message ai">Hello! How can I help you?</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="chatInput" placeholder="Type a message...">
+      <button id="sendBtn">Send</button>
+    </div>
+  </div>
+
+  <script src="../3-java/3-home.js"></script>
+</body>
+</html>

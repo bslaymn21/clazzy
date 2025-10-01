@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clazzy-welcome</title>
+  <link rel="stylesheet" href="../2-CSS/1-login.CSS">
+</head>
+<body>
+
+  <!-- المربع الكبير -->
+  <div class="container">
+    <div class="overlay-text">
+      <h1>Welcome to Clazzy</h1>
+    </div>
+    <div class="grid">
+      <!-- عمود 1 -->
+      <div class="column up">
+        <div class="column-track">
+          <img src="https://picsum.photos/200/250?random=1">
+          <img src="https://picsum.photos/200/260?random=2">
+          <img src="https://picsum.photos/200/270?random=3">
+          <img src="https://picsum.photos/200/280?random=13">
+          <img src="https://picsum.photos/200/240?random=14">
+          <img src="https://picsum.photos/200/260?random=15">
+          <!-- نكرر -->
+          <img src="https://picsum.photos/200/250?random=1">
+          <img src="https://picsum.photos/200/260?random=2">
+          <img src="https://picsum.photos/200/270?random=3">
+          <img src="https://picsum.photos/200/280?random=13">
+          <img src="https://picsum.photos/200/240?random=14">
+          <img src="https://picsum.photos/200/260?random=15">
+        </div>
+      </div>
+      <!-- عمود 2 -->
+      <div class="column down">
+        <div class="column-track">
+          <img src="https://picsum.photos/200/240?random=4">
+          <img src="https://picsum.photos/200/260?random=5">
+          <img src="https://picsum.photos/200/270?random=6">
+          <img src="https://picsum.photos/200/250?random=16">
+          <img src="https://picsum.photos/200/280?random=17">
+          <img src="https://picsum.photos/200/260?random=18">
+          <!-- نكرر -->
+          <img src="https://picsum.photos/200/240?random=4">
+          <img src="https://picsum.photos/200/260?random=5">
+          <img src="https://picsum.photos/200/270?random=6">
+          <img src="https://picsum.photos/200/250?random=16">
+          <img src="https://picsum.photos/200/280?random=17">
+          <img src="https://picsum.photos/200/260?random=18">
+        </div>
+      </div>
+      <!-- عمود 3 -->
+      <div class="column up">
+        <div class="column-track">
+          <img src="https://picsum.photos/200/270?random=7">
+          <img src="https://picsum.photos/200/280?random=8">
+          <img src="https://picsum.photos/200/260?random=9">
+          <img src="https://picsum.photos/200/250?random=19">
+          <img src="https://picsum.photos/200/240?random=20">
+          <img src="https://picsum.photos/200/280?random=21">
+          <!-- نكرر -->
+          <img src="https://picsum.photos/200/270?random=7">
+          <img src="https://picsum.photos/200/280?random=8">
+          <img src="https://picsum.photos/200/260?random=9">
+          <img src="https://picsum.photos/200/250?random=19">
+          <img src="https://picsum.photos/200/240?random=20">
+          <img src="https://picsum.photos/200/280?random=21">
+        </div>
+      </div>
+      <!-- عمود 4 -->
+      <div class="column down">
+        <div class="column-track">
+          <img src="https://picsum.photos/200/250?random=10">
+          <img src="https://picsum.photos/200/240?random=11">
+          <img src="https://picsum.photos/200/260?random=12">
+          <img src="https://picsum.photos/200/270?random=22">
+          <img src="https://picsum.photos/200/280?random=23">
+          <img src="https://picsum.photos/200/260?random=24">
+          <!-- نكرر -->
+          <img src="https://picsum.photos/200/250?random=10">
+          <img src="https://picsum.photos/200/240?random=11">
+          <img src="https://picsum.photos/200/260?random=12">
+          <img src="https://picsum.photos/200/270?random=22">
+          <img src="https://picsum.photos/200/280?random=23">
+          <img src="https://picsum.photos/200/260?random=24">
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- الفورم تحت -->
+<div class="login-box">
+  <h2>Clazzy Login</h2>
+  <form>
+    <div class="input-group">
+      <label for="login">Email or Phone</label>
+      <input type="text" id="login" placeholder="Enter your email or phone number">
+    </div>
+
+    <div class="input-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password">
+    </div>
+
+    <button type="submit" class="btn">Login</button>
+    <p class="signup-text">Don’t have an account? <a href="2-sign-up.html">Sign Up</a></p>
+  </form>
+</div>
+<script>
+  document.querySelector("form").addEventListener("submit", function(e) {
+    e.preventDefault(); // يمنع الريلود
+    const login = document.getElementById("login").value;
+    const password = document.getElementById("password").value;
+
+    if(login && password) {
+      // هنا ممكن نضيف تحقق حقيقي بعدين
+      window.location.href = "home.html"; 
+    } else {
+      alert("Please enter your login details");
+    }
+  });
+</script>
+
+
+</body>
+</html>

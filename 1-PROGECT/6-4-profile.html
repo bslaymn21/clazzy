@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clazzy - Profile Settings</title>
+  <link rel="stylesheet" href="../2-CSS/6-4-profile.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="menu-icon" onclick="toggleSidebar()">☰ Clazzy</div>
+  <div class="nav-center">Profile Settings</div>
+  <div class="nav-right"></div>
+</nav>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="menu-icon2" onclick="toggleSidebar()">☰</div>
+    <div class="profile">
+        <img src="../4-assets/images/logoDark.png" alt="profile">
+      <div class="client-name">ahmed ali</div>
+    </div>
+    <nav>
+      <a href="3-home.html">Homepage</a>
+      <a href="6-4-profile.html">profile</a>
+      <a href="7-4-edit-product.html">Products</a>
+      <a href="settings.html">Settings</a>
+      <a href="help.html">Help</a>
+       <a href="#">log out</a>
+    </nav>
+  </aside>
+  
+<!-- Main Container -->
+<div class="settings-container">
+  <div class="card">
+    <h3>Change Profile Picture</h3>
+    <label class="custom-upload">
+      <input type="file" accept="image/*" hidden>
+      Upload New Picture
+    </label>
+  </div>
+
+  <div class="card">
+    <h3>Edit Bio</h3>
+    <textarea rows="2" placeholder="Write something about yourself..."></textarea>
+  </div>
+
+  <div class="card">
+    <h3>Social Links</h3>
+    <input type="text" placeholder="Facebook link">
+    <input type="text" placeholder="Instagram link">
+    <input type="text" placeholder="TikTok link">
+  </div>
+
+  <div class="card">
+    <h3>Payment Methods</h3>
+    <p class="note">Choose at least one payment method</p>
+    <label>Vodafone Cash</label>
+    <input type="text" placeholder="Enter Vodafone Cash Number">
+    <label>InstaPay</label>
+    <input type="text" placeholder="Enter InstaPay ID">
+    <label>Bank Transfer</label>
+    <input type="text" placeholder="Enter Bank Account Number">
+  </div>
+
+  <div class="card">
+    <button class="btn">Save</button>
+  </div>
+</div>
+
+<script>
+  function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("active");
+  }
+  const sidebar = document.getElementById("sidebar");
+  const menuIcon = document.querySelector(".menu-icon");
+  document.addEventListener("click", (e) => {
+    if (!sidebar.contains(e.target) && !menuIcon.contains(e.target)) {
+      sidebar.classList.remove("active");
+    }
+  });
+</script>
+
+</body>
+</html>

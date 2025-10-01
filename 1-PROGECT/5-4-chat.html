@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clazzy - Chat</title>
+  <link rel="stylesheet" href="../2-CSS/5-4-chat.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="nav-left">Clazzy</div>
+  <div class="nav-right"><a href="4-dashboard.html">Dashboard</a></div>
+</nav>
+
+<!-- Chat Container -->
+<div class="chat-container">
+
+  <!-- قائمة المحادثات -->
+  <div class="chat-list" id="chatList">
+    <div class="chat-item" onclick="openChat('Ahmed')">
+      <div class="chat-name">Ahmed</div>
+      <div class="chat-preview">Hello, I need help...</div>
+      <span class="chat-badge">3</span>
+    </div>
+    <div class="chat-item" onclick="openChat('Sara')">
+      <div class="chat-name">Sara</div>
+      <div class="chat-preview">Is my order shipped?</div>
+      <span class="chat-badge">1</span>
+    </div>
+    <div class="chat-item" onclick="openChat('Omar')">
+      <div class="chat-name">Omar</div>
+      <div class="chat-preview">Thanks for the product!</div>
+    </div>
+  </div>
+
+  <!-- شاشة المحادثة -->
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+      <span id="chatName">Ahmed</span>
+      <span class="close-chat" onclick="closeChat()">×</span>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="msg received">Hello, I need help with my order.</div>
+      <div class="msg sent">Sure Ahmed, what’s the issue?</div>
+      <div class="msg received">I didn’t receive it yet.</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" placeholder="Type a message...">
+      <button>Send</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function openChat(name){
+    document.getElementById("chatWindow").classList.add("active");
+    document.getElementById("chatName").innerText = name;
+    document.getElementById("chatMessages").innerHTML = `
+      <div class="msg received">Hello, this is ${name}'s chat.</div>
+      <div class="msg sent">Welcome ${name}, how can I help you?</div>
+    `;
+  }
+
+  function closeChat(){
+    document.getElementById("chatWindow").classList.remove("active");
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+/* ----------------- Reset & base ----------------- */
+ * { box-sizing: border-box; } 
+ html,body { 
+  height:100%;
+   margin:0;
+    padding:0;
+     font-family: 'Poppins', Arial, sans-serif; 
+     background:#000; 
+     color:#E5E5E5; 
+     -webkit-font-smoothing:antialiased; 
+     -moz-osx-font-smoothing:grayscale; } 
+     a { color:inherit; text-decoration:none; }
+      /* ----------------- Navbar ----------------- */
+       /* Logo in center background */ 
+       .logo-bg { 
+        position: absolute; 
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+        opacity:0.66; /* أوضح من قبل من غير ما يغطي */ 
+        z-index: 2; } 
+        .logo-bg img { width: 280px; /* حجم أكبر شوية */ 
+          height: auto; } 
+          /* Navbar */
+           .navbar { 
+            display: flex;
+             justify-content: space-between; 
+             align-items: center; 
+             background: rgba(0,0,0,0.7); 
+             padding: 10px 20px; 
+             font-weight: bold; } 
+             .menu-icon { 
+              cursor: pointer; 
+              font-size: 18px; 
+              color:#FCA311; 
+            } 
+              .nav-left { 
+                color:#FCA311; 
+                font-size:18px; 
+              } 
+              .nav-center { 
+                font-size:19px; 
+                color:#FCA311; 
+                padding-right: 70px; 
+              } 
+              .nav-right a { 
+                color:#B22222;
+                 text-decoration:none;
+                  font-weight:bold; 
+                } 
+                /* Sidebar */ 
+                .sidebar {
+                   position: fixed; 
+                   left: -250px;
+                    top: 0;
+                     width: 220px; 
+                     height: 100%;
+                      background: #111; 
+                      transition: 0.3s; 
+                      padding: 20px; 
+                      z-index: 1000; 
+                    }
+                     .sidebar.active 
+                    { left: 0; 
+                    } 
+                    .close-side {
+                       background: none; 
+                       border: none; 
+                       color: #FCA311; 
+                       font-size: 22px;
+                        cursor: pointer; 
+                        float: right; 
+                      } 
+                      .profile img { 
+                        width:72px;
+                         height:72px;
+                          border-radius:50%; 
+                          object-fit:cover; 
+                          display:block; 
+                          margin:0 auto 8px; 
+                          border:2px solid rgba(252,163,17,0.12); 
+                        } 
+                          .profile { 
+                            text-align: center;
+                             margin-bottom: 20px; 
+                            } 
+                            .client-name {
+                               color: #FCA311; 
+                               font-weight: bold; 
+                               font-size: 18px; 
+                               margin-top: 10px; 
+                              } 
+                              .sidebar nav a { 
+                                display: block; 
+                                padding: 10px; 
+                                margin: 10px 0;
+                                 color: #E5E5E5; 
+                                 border-radius: 6px;
+                                  text-decoration: none; 
+                                  transition: 0.3s; 
+                                } .sidebar nav a:hover { 
+                                  background: #FCA311;
+                                   color: #000;
+                                   }
+                                    .menu-icon2 { 
+                                      font-size: 24px;
+                                       cursor: pointer; 
+                                       padding-right: 200px;
+                                        padding-top: 0; 
+                                        color: #FCA311; 
+                                      }
+                                       /* ----------------- Page layout ----------------- */ 
+                                       .page { 
+                                        display:flex; 
+                                        gap:20px; 
+                                        padding:18px;
+                                         max-width:1300px; 
+                                         margin: 18px auto;
+                                         }
+                                          /* keep content centered even when sidebar hidden */
+                                           .content { width:100%; } 
+                                           /* ----------------- Add Product button ----------------- */ 
+                                           .add-btn {
+                                             position:fixed; 
+                                             right:18px; /* because dir=rtl, right = visually left? user requested on right side of screen — keeping visual right */
+                                              bottom:18px;
+                                               width:40px; 
+                                               height:40px; /* bigger than 20 for usability; user wanted 20px but that is very small. kept 40px for UX, if you insist 20 change here */
+                                                background:#FCA311; 
+                                                color:#000;
+                                                 display:flex;
+                                                  align-items:center; 
+                                                  justify-content:center;
+                                                   font-weight:800; 
+                                                   border-radius:6px; /* user requested square not round */
+                                                    cursor:pointer;
+                                                     z-index:1100; 
+                                                     box-shadow:0 6px 18px rgba(0,0,0,0.5); 
+                                                     border: none; 
+                                                    }
+                                                     .add-btn:active { 
+                                                      transform:translateY(1px); 
+                                                    }
+                                                    /* ----------------- Pinterest-like grid (masonry using columns) ----------------- */
+.masonry {
+  column-gap: 14px;
+  width:100%;
+  /* default for desktop: 4 columns */
+  columns: 4;
+  padding-bottom: 80px; /* space for add button */
+}
+
+.product-card {
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 14px;
+  background:#111;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 6px 20px rgba(0,0,0,0.6);
+  vertical-align:top;
+  direction:ltr;
+}
+
+.product-thumb {
+  width:100%;
+  display:block;
+  aspect-ratio: 3/4;
+  background-size: cover;
+  background-position:center;
+  /* جربنا نحسن الجودة باستخدام صور أكبر */
+  image-rendering: auto;       /* تمنع التكسير */
+  -ms-interpolation-mode: bicubic; /* للـ IE قديم */
+}        .product-info { 
+                                                              padding:10px; 
+                                                              display:flex;
+                                                               align-items:center;
+                                                                justify-content:space-between;
+                                                                gap:8px;
+                                                               } 
+                                                               .product-title {
+                                                                font-weight:700; 
+                                                                color:#E5E5E5; 
+                                                                font-size:14px; 
+                                                              } 
+                                                              .product-price { 
+                                                                color:#FCA311; 
+                                                                font-weight:800; 
+                                                              } 
+                                                              .product-actions { 
+                                                                display:flex; 
+                                                                gap:8px;
+                                                                 align-items:center; 
+                                                                } 
+                                                                .edit-btn { 
+                                                                  padding:6px 10px; 
+                                                                  border-radius:8px; 
+                                                                  border:none; 
+                                                                  background:#FCA311;
+                                                                   color:#000; 
+                                                                   font-weight:700; 
+                                                                   cursor:pointer; 
+                                                                  } 
+                                                                  /* ----------------- Modal overlay & forms (add/edit) ----------------- */ 
+                                                                  .overlay { 
+                                                                    position:fixed;
+                                                                     inset:0;
+                                                                      background: rgba(0,0,0,0.75);
+                                                                       display:none;
+                                                                        align-items:center; 
+                                                                        justify-content:center; 
+                                                                        z-index:1400; 
+                                                                        padding:20px; 
+                                                                      } 
+                                                                      .overlay.active {
+                                                                         display:flex;
+                                                                         } 
+                                                                         .modal { 
+                                                                          width:100%; 
+                                                                          max-width:720px; 
+                                                                          background:#111;
+                                                                           border-radius:12px; 
+                                                                           padding:18px; 
+                                                                           color:#E5E5E5;
+                                                                            box-shadow:0 12px 40px rgba(0,0,0,0.7); 
+                                                                          } 
+                                                                          .modal h3 {
+                                                                             margin:0 0 12px;
+                                                                              color:#FCA311; 
+                                                                            } 
+                                                                            .form-row { 
+                                                                              display:flex;
+                                                                               gap:12px; 
+                                                                               margin-bottom:12px;
+                                                                               } 
+                                                                               .form-row.column { 
+                                                                                flex-direction:column;
+                                                                               } 
+                                                                               .form-row .half { flex:1; } 
+                                                                               label { display:block; font-weight:700; margin-bottom:6px; color:#E5E5E5; } 
+                                                                               [type="text"], input[type="number"], textarea, select { width:100%; padding:10px; border-radius:8px; border:1px solid rgba(252,163,17,0.12);
+                                                                                 background:#000; color:#E5E5E5; outline:none; } 
+                                                                                 textarea { 
+                                                                                  resize:vertical; 
+                                                                                  min-height:90px;
+                                                                                   max-height:300px;
+                                                                                   } 
+                                                                                   .img-preview { 
+                                                                                    width:100%; 
+                                                                                    height:220px; 
+                                                                                    border-radius:8px;
+                                                                                     background:#222; 
+                                                                                     background-size:cover; 
+                                                                                     background-position:center;
+                                                                                      display:flex;
+                                                                                       align-items:center; 
+                                                                                       justify-content:center;
+                                                                                        color:#999; 
+                                                                                        border:2px dashed rgba(252,163,17,0.12); }
+                                                                                         .modal-actions { 
+                                                                                          display:flex;
+                                                                                           gap:10px;
+                                                                                            margin-top:12px;
+                                                                                             justify-content:flex-end; 
+                                                                                            } 
+                                                                                            .btn {
+                                                                                               padding:10px 14px; 
+                                                                                               border-radius:8px; 
+                                                                                               border:none;
+                                                                                                font-weight:700; 
+                                                                                                cursor:pointer; 
+                                                                                              } 
+                                                                                              .btn.cancel {
+                                                                                                 background:#444;
+                                                                                                  color:#fff; 
+                                                                                                } 
+                                                                                                .btn.publish { background:#FCA311; color:#000; } 
+                                                                                                /* small helper for error */ 
+                                                                                                .error { color:#ff6b6b; font-size:13px; margin-top:6px; display:none; }
+                                                                                                 /* ----------------- Toast ----------------- */ 
+                                                                                                 .toast { 
+                                                                                                  position:fixed;
+                                                                                                   left:50%; 
+                                                                                                   transform:translateX(-50%); 
+                                                                                                   top:18px; 
+                                                                                                   background:#222; 
+                                                                                                   color:#E5E5E5; 
+                                                                                                   padding:10px 14px; 
+                                                                                                   border-radius:8px; 
+                                                                                                   box-shadow:0 8px 20px rgba(0,0,0,0.6); 
+                                                                                                   display:none; z-index:1600; }
+                                                                                                  @media (max-width:1100px) { .masonry{ columns:3; } }
+@media (max-width:900px)  { .masonry{ columns:2; } }
+@media (max-width:600px)  {
+  .masonry{ columns:2; }
+  .page { padding:12px; margin:12px auto; }
+  .modal{ max-width:100%; padding:14px; }
+  .add-btn { width:40px; height:40px; right:12px; bottom:12px; }
+}

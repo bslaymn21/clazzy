@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings</title>
+  <style>
+    /* ----------------- Variables ----------------- */
+    :root {
+      --bg: #000;
+      --text: #fff;
+      --primary: #FCA311;
+    }
+    .light-theme {
+      --bg: #fff;
+      --text: #000;
+      --primary: #B22222;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* ----------------- Navbar ----------------- */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 60px;
+      background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      color: #fff;
+      z-index: 1000;
+    }
+
+    .menu-toggle {
+      font-size: 26px;
+      cursor: pointer;
+    }
+
+    /* ----------------- Sidebar ----------------- */
+    .sidebar {
+      position: fixed;
+      top: 0; left: -260px;
+      width: 260px;
+      height: 100%;
+      background: #222;
+      padding-top: 80px;
+      transition: left 0.3s;
+      z-index: 999;
+    }
+    .sidebar.active { left: 0; }
+    .sidebar a {
+      display: block;
+      padding: 14px 20px;
+      color: #fff;
+      text-decoration: none;
+    }
+    .sidebar a:hover { background: var(--primary); }
+
+    /* ----------------- Page ----------------- */
+    .page {
+      margin-top: 80px;
+      padding: 20px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .section {
+      background: #111;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+    }
+
+    button {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      margin-top: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    select, input {
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #555;
+      background: #222;
+      color: #fff;
+    }
+
+    /* ----------------- Modal (PIN) ----------------- */
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      display: none;
+      background: rgba(0,0,0,0.7);
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+    .modal.active { display: flex; }
+    .modal-content {
+      background: #111;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+    }
+    .modal-content input {
+      width: 100%;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    /* ----------------- Responsive ----------------- */
+    @media(max-width: 768px) {
+      .sidebar { width: 220px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <span class="menu-toggle" onclick="toggleSidebar()">☰</span>
+    <h2 data-i18n="settings">الإعدادات</h2>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <a href="#">Dashboard</a>
+    <a href="#">Products</a>
+    <a href="#">Settings</a>
+  </div>
+
+  <!-- Page Content -->
+  <div class="page">
+    <!-- Theme Section -->
+    <div class="section">
+      <h3 data-i18n="theme">الثيم</h3>
+      <button onclick="toggleTheme()" data-i18n="toggleTheme">تبديل الثيم</button>
+    </div>
+
+    <!-- Language Section -->
+    <div class="section">
+      <h3 data-i18n="language">اللغة</h3>
+      <select onchange="setLang(this.value)">
+        <option value="ar">العربية</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+
+    <!-- Security Section -->
+    <div class="section">
+      <h3 data-i18n="security">الأمان</h3>
+      <button onclick="openPinModal()" data-i18n="changePin">تغيير PIN</button>
+    </div>
+  </div>
+
+  <!-- Modal PIN -->
+  <div class="modal" id="pinModal">
+    <div class="modal-content">
+      <h3 data-i18n="enterPin">أدخل PIN</h3>
+      <input type="password" id="pinInput" maxlength="6" placeholder="******">
+      <button onclick="verifyPin()" data-i18n="confirm">تأكيد</button>
+      <button onclick="closePinModal()" data-i18n="cancel">إلغاء</button>
+    </div>
+  </div>
+
+  <script>
+    // ----------------- Sidebar Toggle -----------------
+    const sidebar = document.getElementById("sidebar");
+    function toggleSidebar(){ sidebar.classList.toggle("active"); }
+    document.addEventListener("click", e => {
+      if (!sidebar.contains(e.target) && !e.target.closest(".menu-toggle")) {
+        sidebar.classList.remove("active");
+      }
+    });
+
+    // ----------------- Theme Toggle -----------------
+    function toggleTheme(){
+      document.body.classList.toggle("light-theme");
+    }
+
+    // ----------------- Language Switch -----------------
+    const translations = {
+      ar: {
+        settings:"الإعدادات", theme:"الثيم", toggleTheme:"تبديل الثيم",
+        language:"اللغة", security:"الأمان", changePin:"تغيير PIN",
+        enterPin:"أدخل PIN", confirm:"تأكيد", cancel:"إلغاء"
+      },
+      en: {
+        settings:"Settings", theme:"Theme", toggleTheme:"Toggle Theme",
+        language:"Language", security:"Security", changePin:"Change PIN",
+        enterPin:"Enter PIN", confirm:"Confirm", cancel:"Cancel"
+      }
+    };
+    function setLang(lang){
+      document.querySelectorAll("[data-i18n]").forEach(el=>{
+        el.innerText = translations[lang][el.dataset.i18n];
+      });
+    }
+
+    // ----------------- PIN Modal -----------------
+    const pinModal = document.getElementById("pinModal");
+    function openPinModal(){ pinModal.classList.add("active"); }
+    function closePinModal(){ pinModal.classList.remove("active"); }
+    function verifyPin(){
+      const pin = document.getElementById("pinInput").value;
+      if(pin === "123456"){
+        alert("✅ PIN صحيح");
+        closePinModal();
+      } else {
+        alert("❌ PIN غلط");
+      }
+    }
+  </script>
+</body>
+</html>
